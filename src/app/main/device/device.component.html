@@ -1,0 +1,146 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="card">
+      <h5 class="card-title">기기관리</h5>
+
+      <div class="table-responsive">
+        <div class="devicetitle">
+          <div class="pt-4">
+            <button class="btn" (click)="clickedModal()">
+              <i class="menu-icon mdi mdi-plus"></i>
+              기기 등록
+            </button>
+          </div>
+        </div>
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr class="tabletr">
+              <th class="tableth">
+                고객사코드
+              </th>
+              <th class="tableth">
+                모델명
+              </th>
+              <th class="tableth">
+                기기명
+              </th>
+              <th class="tableth">
+                설치장소
+              </th>
+              <th class="tableth">
+                설치일
+              </th>
+              <th class="tableth">
+                설치사진
+              </th>
+              <th class="tableth">
+                통신방식
+              </th>
+              <th class="tableth">
+                메모
+              </th>
+              <th class="tableth">
+                변경
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let devicedata of getalldevicesdata">
+              <td class="tabletd font-weight-medium">
+                {{devicedata.customerCode}}
+              </td>
+              <td class="tabletd">
+
+              </td>
+              <td class="tabletd">
+                {{devicedata.name}}
+              </td>
+              <td class="tabletd">
+
+              </td>
+              <td class="tabletd">
+                {{devicedata.installDate}}
+              </td>
+              <td class="tabletd">
+                {{devicedata.picture}}
+              </td>
+              <td class="tabletd">
+
+              </td>
+              <td class="tabletd">
+                {{devicedata.userMemo}}
+              </td>
+              <td class="tabletd">
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div [ngClass]="modal ? 'modal fade show d-block' : 'modal fade'" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true" class="modalcontainer">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="deviceenrollcard">
+        <h5 class="modal-title" id="exampleModalLabel">기기등록</h5>
+
+        <form [formGroup]="deviceenrollForm" (ngSubmit)="deviceenroll()" novalidate>
+          <div class="inputDiv">
+            <input type="text" placeholder="고객사코드" formControlName="customerCode" tabindex="1" />
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="디바이스Id" formControlName="deviceId" tabindex="2" />
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="기기명" formControlName="name" tabindex="3" />
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="모델명" formControlName="model" tabindex="4" />
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="설치장소" formControlName="location" tabindex="5" />
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="설치일" formControlName="installDate" tabindex="6" />
+          </div>
+
+          <div class="inputDiv">
+            <!-- <img [src]="imageSrc" style="width: 10%; height: 10%;"> -->
+            <h4 class="pictureinputtitle">설치사진</h4>
+            <input placeholder="설치사진" type="file" accept="image/*" class="form-file" formControlName="picture"
+              (change)="onFileChange(fileInput.files)" #fileInput tabindex="7">
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="통신방식" formControlName="communicateMethod" tabindex="8" />
+          </div>
+
+          <div class="inputDiv">
+            <input type="text" placeholder="메모" formControlName="userMemo" tabindex="9" />
+          </div>
+
+
+
+          <div class="modal_footer">
+            <button class="footerbutton" tabindex="10" type="button" (click)="clickedModalClose()">취소</button>
+            <button class="footerbutton" tabindex="11" type="submit">기기등록</button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
